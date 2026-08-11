@@ -1,5 +1,5 @@
 # ============================================================
-#  SVJ Pickles — one-click update script
+#  Maa Ke Haton Ka Acchar — one-click update script
 #  After editing in editor.html, double-click this file.
 #  It publishes the website, rebuilds the Android app, and backs
 #  everything up on GitHub.
@@ -12,7 +12,7 @@ $srcFiles = @("index.html", "styles.css", "script.js", "languages.js", "products
 $jsFiles = @("script.js", "languages.js", "products.js", "site-config.js")
 
 Write-Host ""
-Write-Host "===== SVJ Pickles update =====" -ForegroundColor Green
+Write-Host "===== Site update =====" -ForegroundColor Green
 
 # 1) Apply files downloaded by editor.html (only if newer than current)
 foreach ($f in @("site-config.js", "products.js", "languages.js")) {

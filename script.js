@@ -103,7 +103,7 @@ function makeProductCard(p) {
   card.innerHTML =
     badge +
     (p.cat === "seasonal" ? '<span class="seasonal-tag">' + t("seasonal_tag") + "</span>" : "") +
-    '<div class="product-emoji product-emoji-text">SVJ</div>' +
+    '<div class="product-emoji product-emoji-text"><img class="mark-img" src="brand.svg" alt="SVJ"></div>' +
     '<div class="product-body">' +
       '<h3 class="product-name"></h3>' +
       '<div class="product-rating">' + starsHTML(p.rating) + ' <span class="reviews-count">' + p.rating + " (" + p.reviews + " " + t("reviews_suffix") + ")</span></div>" +
@@ -204,7 +204,7 @@ function renderOfferBanners() {
     const card = document.createElement("div");
     card.className = "offer-banner";
     card.innerHTML =
-      '<div class="offer-emoji offer-emoji-text">SVJ</div>' +
+      '<div class="offer-emoji offer-emoji-text"><img class="mark-img" src="brand.svg" alt="SVJ"></div>' +
       '<div><h3></h3><p></p><button class="btn btn-whatsapp">' + t("order_btn") + "</button></div>";
     card.querySelector("h3").textContent = productName(p);
     card.querySelector("p").textContent = v.size + " — " + (v.mrp !== v.price ? "MRP " + v.mrp + " " : "") + v.price;
@@ -280,7 +280,7 @@ function renderCart() {
 
   if (cart.length === 0) {
     itemsEl.innerHTML =
-      '<div class="cart-empty"><p class="cart-empty-emoji">SVJ</p><p>' + t("cart_empty") + "</p>" +
+      '<div class="cart-empty"><p class="cart-empty-emoji"><img class="mark-img" src="brand.svg" alt="SVJ"></p><p>' + t("cart_empty") + "</p>" +
       '<a class="btn btn-primary" href="#products" id="cartBrowse">' + t("cart_empty_btn") + "</a></div>";
     footerEl.style.display = "none";
     const browse = document.getElementById("cartBrowse");
@@ -297,7 +297,7 @@ function renderCart() {
     const line = document.createElement("div");
     line.className = "cart-line";
     line.innerHTML =
-      '<span class="cl-emoji cl-emoji-text">SVJ</span>' +
+      '<span class="cl-emoji cl-emoji-text"><img class="mark-img" src="brand.svg" alt="SVJ"></span>' +
       '<div class="cl-info">' +
         '<div class="cl-name"></div>' +
         '<div class="cl-size">' + v.size + " — " + v.price + "</div>" +
@@ -432,7 +432,7 @@ function renderGallery() {
   for (let i = 1; i <= 6; i++) {
     const item = document.createElement("div");
     item.className = "gallery-item";
-    item.innerHTML = '<span class="gallery-icon">SVJ</span><strong>' + t("gallery_photo") + " " + i + "</strong><small>" + t("gallery_photo_" + i) + "</small>";
+    item.innerHTML = '<span class="gallery-icon"><img class="mark-img" src="brand.svg" alt="SVJ"></span><strong>' + t("gallery_photo") + " " + i + "</strong><small>" + t("gallery_photo_" + i) + "</small>";
     grid.appendChild(item);
   }
 }

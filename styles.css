@@ -747,6 +747,15 @@ body {
   line-height: 1.4;
 }
 
+.mark-img { display: inline-block; }
+.product-emoji .mark-img { height: 64px; }
+.offer-emoji .mark-img { height: 46px; }
+.cart-empty .mark-img { height: 56px; }
+.cart-line .mark-img { height: 28px; vertical-align: middle; }
+.gallery-icon .mark-img { height: 38px; }
+.badge-icon .mark-img { height: 24px; }
+.contact-icon .mark-img { height: 28px; margin-bottom: 2px; }
+
 .contact-card strong { display: block; color: var(--dark); margin-bottom: 4px; }
 
 .contact-card p { color: var(--muted); font-size: 0.95rem; }
