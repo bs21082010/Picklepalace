@@ -127,8 +127,10 @@ body {
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 10px;
   color: var(--white);
-  font-size: 1.15rem;
-  padding: 5px 9px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 7px 12px;
   cursor: pointer;
 }
 
@@ -366,6 +368,13 @@ body {
   padding: 22px 0;
 }
 
+.product-emoji-text {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--primary);
+}
+
 .product-body { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 
 .product-name { font-size: 1.05rem; font-weight: 800; color: var(--dark); }
@@ -472,6 +481,13 @@ body {
 
 .offer-banner .offer-emoji { font-size: 2.6rem; }
 
+.offer-emoji-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
 .offer-banner h3 { color: var(--dark); font-size: 1.1rem; margin-bottom: 2px; }
 
 .offer-banner p { color: var(--muted); font-size: 0.92rem; margin-bottom: 10px; }
@@ -543,6 +559,13 @@ body {
 }
 
 .badge span { font-size: 1.6rem; }
+
+.badge .badge-icon {
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
 .badge strong { font-size: 0.92rem; color: var(--dark); }
 
 /* ---------- Gallery ---------- */
@@ -568,6 +591,14 @@ body {
 }
 
 .gallery-item span { font-size: 2.2rem; margin-bottom: 4px; }
+
+.gallery-item .gallery-icon {
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
 
 /* ---------- Reviews ---------- */
 .rating-summary {
@@ -708,6 +739,14 @@ body {
 
 .contact-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
 
+.contact-icon-text {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--primary);
+  line-height: 1.4;
+}
+
 .contact-card strong { display: block; color: var(--dark); margin-bottom: 4px; }
 
 .contact-card p { color: var(--muted); font-size: 0.95rem; }
@@ -843,6 +882,13 @@ body {
 
 .cart-empty p { margin-bottom: 14px; }
 
+.cart-empty-emoji {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--primary);
+}
+
 .cart-line {
   display: flex;
   gap: 12px;
@@ -853,6 +899,13 @@ body {
 }
 
 .cart-line .cl-emoji { font-size: 1.7rem; }
+
+.cart-line .cl-emoji-text {
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
 
 .cart-line .cl-info { flex: 1; min-width: 0; }
 
@@ -930,7 +983,9 @@ body {
   border-radius: 50%;
   background: #25d366;
   color: var(--white);
-  font-size: 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
