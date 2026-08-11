@@ -7,5 +7,6 @@ const SITE_CONFIG = {
   email: "your@email.com",
   facebook: "#",
   instagram: "#",
-  youtube: "#"
+  youtube: "#",
+  adminPin: "1234"
 };

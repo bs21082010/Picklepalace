@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Owner Hub</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, sans-serif; background: #fff8ec; color: #2c2c2c; min-height: 100vh; }
+  .screen { max-width: 420px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+  .logo { width: 76px; height: 76px; border-radius: 22px; background: #1a7a3d; color: #fff; font-weight: 900; font-size: 1.1rem; letter-spacing: 2px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+  h1 { font-size: 1.3rem; color: #145c2e; margin-bottom: 6px; }
+  p.sub { color: #777; font-size: 0.9rem; margin-bottom: 26px; }
+  .lock { background: #fff; border: 1px solid #e5d9c3; border-radius: 12px; padding: 26px 20px; }
+  .lock label { display: block; font-size: 0.8rem; font-weight: 700; color: #555; margin-bottom: 8px; }
+  .lock input { width: 100%; text-align: center; font-size: 1.4rem; letter-spacing: 8px; padding: 12px; border: 2px solid #e5d9c3; border-radius: 8px; outline: none; }
+  .lock input:focus { border-color: #1a7a3d; }
+  .lock input.shake { border-color: #c0392b; animation: shake 0.3s; }
+  @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  .lock .btn { width: 100%; margin-top: 14px; background: #1a7a3d; color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+  .err { color: #c0392b; font-size: 0.82rem; margin-top: 10px; min-height: 16px; }
+  .hub { max-width: 560px; margin: 0 auto; padding: 36px 20px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .card { background: #fff; border: 1px solid #e5d9c3; border-radius: 12px; padding: 22px 16px; text-decoration: none; color: #2c2c2c; display: block; transition: transform 0.12s, box-shadow 0.12s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .card .ic { width: 42px; height: 42px; border-radius: 11px; background: #1a7a3d; color: #fff; font-weight: 900; font-size: 0.8rem; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+  .card.b .ic { background: #25d366; }
+  .card.c .ic { background: #145c2e; }
+  .card.d .ic { background: #c0392b; }
+  .card strong { display: block; font-size: 0.95rem; margin-bottom: 3px; }
+  .card small { color: #777; font-size: 0.78rem; line-height: 1.4; display: block; }
+  .help { background: #fff3cd; border: 1px solid #e6c96a; border-radius: 10px; padding: 14px 16px; margin-top: 20px; font-size: 0.85rem; line-height: 1.55; text-align: left; color: #5c4a1e; }
+  .help b { color: #a67c00; }
+  .out { margin-top: 22px; font-size: 0.8rem; color: #999; background: none; border: none; text-decoration: underline; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div id="lockScreen" class="screen">
+  <div class="logo">SVJ</div>
+  <h1>Owner Hub</h1>
+  <p class="sub">Private — authorised owner only</p>
+  <div class="lock">
+    <label for="pinInput">Enter PIN</label>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="6" autocomplete="off">
+    <button class="btn" id="pinBtn">Unlock</button>
+    <div class="err" id="pinErr"></div>
+  </div>
+</div>
+
+<div id="hubScreen" class="hub" style="display:none">
+  <div style="text-align:center">
+    <div class="logo">SVJ</div>
+    <h1 style="color:#145c2e">Owner Hub</h1>
+    <p class="sub">What would you like to do?</p>
+  </div>
+  <div class="cards">
+    <a class="card a" id="cardEditor" href="editor.html">
+      <div class="ic">EDIT</div>
+      <strong>Edit Website</strong>
+      <small>Products, prices, phone number — works from any phone or computer</small>
+    </a>
+    <a class="card b" id="cardWa" href="#" target="_blank" rel="noopener">
+      <div class="ic">WA</div>
+      <strong>WhatsApp Chat</strong>
+      <small>Open your WhatsApp to reply to customers</small>
+    </a>
+    <a class="card c" href="index.html">
+      <div class="ic">SITE</div>
+      <strong>View Website</strong>
+      <small>See the live store exactly like customers see it</small>
+    </a>
+    <button class="card d" style="width:100%;cursor:pointer;border:none;font:inherit;text-align:center" onclick="showHelp()">
+      <div class="ic" style="margin:0 auto 10px">?</div>
+      <strong>How to Update</strong>
+      <small>Step-by-step instructions</small>
+    </button>
+  </div>
+  <div class="help" id="helpBox" style="display:none">
+    <b>How to update your site:</b><br>
+    1. Tap <b>Edit Website</b> — the editor opens.<br>
+    2. Change anything: products, prices, WhatsApp number, address.<br>
+    3. Tap <b>Save &amp; Download</b> — 3 files download.<br>
+    4. Save the files to your computer's <b>Downloads</b> folder.<br>
+    5. On your computer, double-click <b>deploy-update.ps1</b> — the website and app update in ~1 minute.<br>
+    <i>Tip: the editor remembers nothing itself — the files you download ARE the new website data.</i>
+  </div>
+  <div style="text-align:center">
+    <button class="out" onclick="lockOut()">Lock again</button>
+  </div>
+</div>
+
+<script src="site-config.js"></script>
+<script>
+const PIN = String(SITE_CONFIG.adminPin || "1234");
+
+function showHub() {
+  document.getElementById("lockScreen").style.display = "none";
+  document.getElementById("hubScreen").style.display = "block";
+  const wa = document.getElementById("cardWa");
+  wa.href = "https://wa.me/" + String(SITE_CONFIG.whatsapp).replace(/[^0-9]/g, "");
+}
+
+function showHelp() {
+  const box = document.getElementById("helpBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function lockOut() {
+  sessionStorage.removeItem("svj_admin_ok");
+  document.getElementById("hubScreen").style.display = "none";
+  document.getElementById("lockScreen").style.display = "block";
+  document.getElementById("pinInput").value = "";
+  document.getElementById("pinErr").textContent = "";
+}
+
+function tryUnlock() {
+  const input = document.getElementById("pinInput");
+  const err = document.getElementById("pinErr");
+  if (input.value.trim() === PIN) {
+    sessionStorage.setItem("svj_admin_ok", "1");
+    showHub();
+  } else {
+    input.value = "";
+    input.classList.add("shake");
+    err.textContent = "Wrong PIN — this page is only for the owner.";
+    setTimeout(() => input.classList.remove("shake"), 350);
+  }
+}
+
+document.getElementById("pinBtn").addEventListener("click", tryUnlock);
+document.getElementById("pinInput").addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
+
+if (sessionStorage.getItem("svj_admin_ok") === "1") showHub();
+</script>
+</body>
+</html>
