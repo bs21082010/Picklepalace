@@ -1,0 +1,10 @@
+# OS junk
+Thumbs.db
+.DS_Store
+*.log
+
+# Android build outputs (if the APK project is built locally)
+android/.gradle/
+android/app/build/
+android/build/
+*.keystore

@@ -1,0 +1,88 @@
+# ✏️ EDIT GUIDE — How to update your website
+
+**Files you may ever need to touch:**
+| File | What it controls |
+|---|---|
+| `script.js` | Your phone/WhatsApp/email numbers |
+| `products.js` | The pickle list, prices, sizes, seasonal items |
+| `languages.js` | All the words on the site (9 languages) |
+| `index.html` | Page structure (rarely needed) |
+
+**To open a file for editing:** right-click the file → **Open with** → **Notepad** (or VS Code if you have it). Type your changes, **Ctrl+S** to save, then publish again (see PUBLISH GUIDE).
+
+---
+
+## 1. WhatsApp / phone / email (most important!)
+
+Open `script.js` with Notepad. Near the top you'll see:
+
+```
+const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // your WhatsApp number
+const PHONE_NUMBER = "+91XXXXXXXXXX";
+const EMAIL = "your@email.com";
+```
+
+Replace the `XXXX...` with your real numbers:
+- Example WhatsApp: `const WHATSAPP_NUMBER = "919876543210";` (country code 91 + your 10-digit number, NO + or spaces)
+- Example phone: `const PHONE_NUMBER = "+919876543210";`
+- Example email: `const EMAIL = "maakehatonkaacchar@gmail.com";`
+
+Save. Done — every WhatsApp button on the site now goes to you.
+
+## 2. Change a price / size
+
+Open `products.js`. Find your pickle, e.g.:
+
+```
+    price: "₹150",
+    size: "500g",
+```
+
+Change `₹150` to `₹180`, or `500g` to `1kg`. Save.
+
+## 3. Add a new pickle
+
+Open `products.js`. Find a product block that looks like `{ ... },` (copy one, like the Mango one). Paste it right after (inside the outer `[ ... ]` list), then change its `id`, `emoji`, `price`, `size`, `name`, `desc`.
+- For a **seasonal** pickle, write `cat: "seasonal",` — it appears in the Seasonal section with a green "Seasonal" tag.
+- For a **normal** pickle, write `cat: "regular",`.
+- The `name` block can have 9 languages; for languages you don't fill, the site shows the English name — that's fine.
+
+## 4. Remove a pickle
+
+Delete its whole block `{ ... },`. Make sure the remaining blocks still start and end with `[` and `]`.
+
+## 5. Add your photos (Gallery)
+
+1. Take photos with your phone (bright, close-up photos of jars)
+2. Send them to your computer
+3. Create a folder named `photos` inside your website folder, put the photos there
+4. Replace the placeholders — for each photo:
+   - Add the photo in `index.html` inside the gallery: replace a placeholder block with `<img src="photos/yourphoto.jpg" alt="...">`
+   - Or ask me to add a simple "how to add photos" feature first — easiest is to just ask me to set up the gallery once you have photos.
+
+## 6. Add real customer reviews
+
+Open `languages.js` in Notepad. Press **Ctrl+F** and search for `review_1_text` (English section).
+Replace the sample text with a real review. Same for `review_2_text` and `review_3_text`, and change the author names (`review_1_author`, etc.).
+You can also add a 4th review by copying a block, but simplest: ask me — it's a 1-minute job.
+
+## 7. Fix a translation
+
+Open `languages.js`. Press **Ctrl+F** and search for the English word you want to fix (e.g. `faq_1_a`). Each language has its own line. Edit the text, save.
+Note: translations are good but not professional — if a Hindi/Bengali/... sentence sounds off, get a native speaker to check. Every sentence is in one place in `languages.js`.
+
+## 8. Add a new language (9 → 10+)
+
+Open `languages.js`:
+1. Add your language code to the `LANGUAGES` list at the top (e.g. `ml: "മലയാളം"`)
+2. Copy an existing language block (e.g. the whole `hi: { ... }` block) and paste it inside `TRANSLATIONS`
+3. Change `hi` to your code and translate every line
+4. Save. The new language automatically appears in the dropdown.
+
+## 9. Change opening hours or address
+
+Open `languages.js`, search for `contact_hours` or `contact_address` (English section). Edit. Save.
+
+---
+
+**Remember:** after any edit, re-publish (drag the folder again on app.netlify.com/drop). The website link stays the same.

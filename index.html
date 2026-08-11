@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maa Ke Haton Ka Acchar</title>
+<meta name="description" content="Maa Ke Haton Ka Acchar — homemade pickles made with mother's hands. Ambikapur, Chhattisgarh.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="theme-color" content="#3a2e1f">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-icon">🥒</span>
+      <span class="brand-name" data-i18n="brand_name">Maa Ke Haton Ka Acchar</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" data-i18n="nav_home">Home</a>
+      <a href="#products" data-i18n="nav_products">Products</a>
+      <a href="#seasonal" data-i18n="nav_seasonal">Seasonal</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="header-right">
+      <label class="lang-label" for="langSelect">🌐</label>
+      <select id="langSelect" class="lang-select" aria-label="Language"></select>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <div class="hero-emoji">🥒🫙</div>
+    <h1 data-i18n="hero_title">Homemade Pickles, Made With A Mother's Love</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Fresh, tasty achar made the traditional way — no preservatives, just love. Order on WhatsApp and get it delivered to your door.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#products" data-i18n="hero_btn_menu">See Our Pickles</a>
+      <a class="btn btn-whatsapp" id="heroWhatsApp" href="#" target="_blank" rel="noopener" data-i18n="hero_btn_order">Order on WhatsApp</a>
+    </div>
+    <p class="hero-location" data-i18n="hero_location">📍 Ambikapur, Chhattisgarh — 497001</p>
+  </div>
+</section>
+
+<section id="products" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="products_title">Our Pickles</h2>
+    <p class="section-sub" data-i18n="products_sub">All types of pickles — homemade, fresh, and full of flavour. Tap any pickle to order.</p>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section id="seasonal" class="section section-seasonal">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="seasonal_title">🌿 Seasonal Pickles</h2>
+    <p class="section-sub" data-i18n="seasonal_sub">Special pickles made only in their season — available for a short time, so grab them while they last!</p>
+    <div class="product-grid" id="seasonalGrid"></div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="about_title">Our Story</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p data-i18n="about_p1">"Maa Ke Haton Ka Acchar" means pickles made from a mother's hands. Every jar is made the old-fashioned way — sun-dried spices, fresh ingredients, and recipes passed down through generations.</p>
+        <p data-i18n="about_p2">We use only quality ingredients, pure mustard oil, and natural spices. No preservatives, no artificial colours — just honest, homemade taste.</p>
+        <p data-i18n="about_p3">From our kitchen in Ambikapur to your home, we deliver the taste of home.</p>
+      </div>
+      <div class="about-badges">
+        <div class="badge"><span>🧂</span><strong data-i18n="badge_1">100% Natural</strong></div>
+        <div class="badge"><span>🌞</span><strong data-i18n="badge_2">Sun-Dried Spices</strong></div>
+        <div class="badge"><span>🚫</span><strong data-i18n="badge_3">No Preservatives</strong></div>
+        <div class="badge"><span>❤️</span><strong data-i18n="badge_4">Made With Love</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="section section-gallery">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="gallery_title">Gallery</h2>
+    <p class="section-sub" data-i18n="gallery_sub">A look at our pickles. (Photos coming soon!)</p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section id="reviews" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="reviews_title">What Our Customers Say</h2>
+    <div class="review-grid" id="reviewGrid"></div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<section id="contact" class="section section-contact">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="contact_title">Contact &amp; Ordering</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="contact-icon">📍</span>
+        <strong data-i18n="contact_address_label">Address</strong>
+        <p data-i18n="contact_address">Ambikapur, Chhattisgarh, India — 497001</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">📞</span>
+        <strong data-i18n="contact_phone_label">Phone / WhatsApp</strong>
+        <p><a id="contactPhoneLink" href="#" data-i18n="contact_phone_placeholder">+91 XXXXX XXXXX</a></p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">📧</span>
+        <strong data-i18n="contact_email_label">Email</strong>
+        <p><a id="contactEmailLink" href="#" data-i18n="contact_email_placeholder">your@email.com</a></p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">🕐</span>
+        <strong data-i18n="contact_hours_label">Opening Hours</strong>
+        <p data-i18n="contact_hours">Every day, 9:00 AM – 8:00 PM</p>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a class="btn btn-whatsapp btn-large" id="contactWhatsApp" href="#" target="_blank" rel="noopener" data-i18n="contact_btn_whatsapp">Chat on WhatsApp</a>
+      <a class="btn btn-call btn-large" id="contactCall" href="#" data-i18n="contact_btn_call">Call Us</a>
+    </div>
+    <p class="contact-note" data-i18n="contact_note">Delivery available in Ambikapur. Order for other cities by WhatsApp — we will help you arrange delivery.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p data-i18n="footer_line1">Maa Ke Haton Ka Acchar © 2026 — Made with ❤️ in Ambikapur</p>
+    <p data-i18n="footer_line2">Homemade pickles, delivered to your home.</p>
+  </div>
+</footer>
+
+<script src="languages.js"></script>
+<script src="products.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
