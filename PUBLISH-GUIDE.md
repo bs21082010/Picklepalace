@@ -2,7 +2,22 @@
 
 Your whole website is in the folder: `C:\Users\amin\maakehatonkaacchar`
 
-## Option 1: Netlify Drop (easiest — 2 minutes, free)
+## Option 1: GitHub Pages (recommended — your files are already on GitHub)
+
+Your website files are already in your GitHub repo: `bs21082010/Picklepalace`
+
+1. Open **github.com/bs21082010/Picklepalace** in your browser (log in)
+2. Click **Settings** → scroll to **Pages** (left menu, bottom)
+3. Under **Build and deployment**: Source → **Deploy from a branch**
+4. Branch → **main** → folder **/ (root)** → click **Save**
+5. Wait 1–2 minutes. Your live website address is:
+   **`https://bs21082010.github.io/Picklepalace/`**
+6. Share that link with customers!
+
+> To update the website: edit the files on your computer, then in the repo folder run:
+> `git add -A` then `git commit -m "update"` then `git push` — the site updates automatically after ~1 minute.
+
+## Option 2: Netlify Drop (alternative — 2 minutes, free)
 
 1. Open the website: **app.netlify.com/drop** in your browser
 2. Drag your whole folder into the page (yes, the whole folder, not just one file)
