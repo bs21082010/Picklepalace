@@ -1,17 +1,28 @@
 /* Maa Ke Haton Ka Acchar — product list.
-   HOW TO EDIT: find a product, change name / price / size / emoji.
-   To add a product: copy one whole block { ... }, paste after the last one,
-   remove the comma if needed, and edit it. Save the file. Done!
+   HOW TO EDIT: change name / price / size / emoji. To add a product: copy one whole
+   block { ... }, paste after the last one, edit it. Save. Done!
 
-   If a language is missing for name/desc, the site shows English text for it.
-   cat: "regular" = normal section, "seasonal" = seasonal section. */
+   Fields:
+   - cat: "mango" | "spicy" | "sweet" | "mixed" | "combo"   (filter category)
+          use cat: "seasonal" for the Seasonal section
+   - badge: "" | "new" | "bestseller" | "soldout" | "offer"  (shown on the card)
+   - rating: 0-5, reviews: count shown under the name
+   - variants: sizes with price and mrp (mrp only if discounted; use same as price
+     when no discount). Add or remove variants freely.
+   - name/desc: can be in 9 languages; missing languages fall back to English. */
 const PRODUCTS = [
   {
     id: "mango",
-    cat: "regular",
+    cat: "mango",
     emoji: "🥭",
-    price: "₹150",
-    size: "500g",
+    badge: "bestseller",
+    rating: 4.8,
+    reviews: 214,
+    variants: [
+      { size: "250g", price: "₹90", mrp: "₹110" },
+      { size: "500g", price: "₹150", mrp: "₹180" },
+      { size: "1kg", price: "₹280", mrp: "₹330" }
+    ],
     name: {
       en: "Mango Pickle (Aam Ka Achar)",
       hi: "आम का अचार",
@@ -30,10 +41,16 @@ const PRODUCTS = [
   },
   {
     id: "lemon",
-    cat: "regular",
+    cat: "spicy",
     emoji: "🍋",
-    price: "₹120",
-    size: "500g",
+    badge: "",
+    rating: 4.7,
+    reviews: 156,
+    variants: [
+      { size: "250g", price: "₹70", mrp: "₹85" },
+      { size: "500g", price: "₹120", mrp: "₹140" },
+      { size: "1kg", price: "₹225", mrp: "₹265" }
+    ],
     name: {
       en: "Lemon Pickle (Nimbu Ka Achar)",
       hi: "नींबू का अचार",
@@ -52,10 +69,16 @@ const PRODUCTS = [
   },
   {
     id: "chilli",
-    cat: "regular",
+    cat: "spicy",
     emoji: "🌶️",
-    price: "₹130",
-    size: "500g",
+    badge: "new",
+    rating: 4.9,
+    reviews: 98,
+    variants: [
+      { size: "250g", price: "₹80", mrp: "₹95" },
+      { size: "500g", price: "₹130", mrp: "₹155" },
+      { size: "1kg", price: "₹245", mrp: "₹290" }
+    ],
     name: {
       en: "Green Chilli Pickle (Mirchi Ka Achar)",
       hi: "हरी मिर्च का अचार",
@@ -74,10 +97,16 @@ const PRODUCTS = [
   },
   {
     id: "mixed",
-    cat: "regular",
+    cat: "mixed",
     emoji: "🫙",
-    price: "₹180",
-    size: "500g",
+    badge: "bestseller",
+    rating: 4.8,
+    reviews: 341,
+    variants: [
+      { size: "250g", price: "₹110", mrp: "₹130" },
+      { size: "500g", price: "₹180", mrp: "₹210" },
+      { size: "1kg", price: "₹340", mrp: "₹400" }
+    ],
     name: {
       en: "Mixed Pickle",
       hi: "मिक्स अचार",
@@ -96,10 +125,15 @@ const PRODUCTS = [
   },
   {
     id: "garlic",
-    cat: "regular",
+    cat: "spicy",
     emoji: "🧄",
-    price: "₹200",
-    size: "250g",
+    badge: "",
+    rating: 4.6,
+    reviews: 87,
+    variants: [
+      { size: "250g", price: "₹200", mrp: "₹240" },
+      { size: "500g", price: "₹380", mrp: "₹450" }
+    ],
     name: {
       en: "Garlic Pickle (Lehsun Ka Achar)",
       hi: "लहसुन का अचार",
@@ -118,10 +152,16 @@ const PRODUCTS = [
   },
   {
     id: "amla",
-    cat: "regular",
+    cat: "sweet",
     emoji: "🟢",
-    price: "₹160",
-    size: "500g",
+    badge: "",
+    rating: 4.7,
+    reviews: 129,
+    variants: [
+      { size: "250g", price: "₹95", mrp: "₹115" },
+      { size: "500g", price: "₹160", mrp: "₹190" },
+      { size: "1kg", price: "₹300", mrp: "₹350" }
+    ],
     name: {
       en: "Amla Pickle (Gooseberry)",
       hi: "आंवले का अचार",
@@ -139,11 +179,70 @@ const PRODUCTS = [
     }
   },
   {
+    id: "sample_pack",
+    cat: "combo",
+    emoji: "🎁",
+    badge: "bestseller",
+    rating: 4.9,
+    reviews: 176,
+    variants: [
+      { size: "5 × 150g", price: "₹399", mrp: "₹499" },
+      { size: "5 × 150g + Kheer Mix", price: "₹450", mrp: "₹560" }
+    ],
+    name: {
+      en: "Sample Pack — 5 Mini Jars",
+      hi: "सैंपल पैक — 5 मिनी जार",
+      bn: "স্যাম্পল প্যাক — ৫টি মিনি জার",
+      or: "ସାମ୍ପଲ ପ୍ୟାକ୍ — ୫ ମିନି ଜାର",
+      te: "సాంపిల్ ప్యాక్ — 5 మినీ జాడీలు",
+      mr: "सॅम्पल पॅक — 5 मिनी डबे",
+      ta: "சாம்பிள் பேக் — 5 மினி ஜாடிகள்",
+      gu: "સેમ્પલ પેક — 5 મિની બરણીઓ",
+      pa: "ਸੈਂਪਲ ਪੈਕ — 5 ਮਿੰਨੀ ਡੱਬੇ"
+    },
+    desc: {
+      en: "Try 5 different pickles in one pack — perfect for first-time customers.",
+      hi: "एक पैक में 5 अलग-अलग अचार — नए ग्राहकों के लिए बेहतरीन।"
+    }
+  },
+  {
+    id: "combo_pack",
+    cat: "combo",
+    emoji: "🧺",
+    badge: "offer",
+    rating: 4.8,
+    reviews: 203,
+    variants: [
+      { size: "3 × 500g", price: "₹420", mrp: "₹490" },
+      { size: "5 × 500g", price: "₹650", mrp: "₹765" }
+    ],
+    name: {
+      en: "Family Combo Pack (15% OFF)",
+      hi: "फैमिली कॉम्बो पैक (15% OFF)",
+      bn: "ফ্যামিলি কম্বো প্যাক (১৫% ছাড়)",
+      or: "ଫ୍ୟାମିଲି କମ୍ବୋ ପ୍ୟାକ୍ (୧୫% ଛାଡ଼)",
+      te: "ఫ్యామిలీ కాంబో ప్యాక్ (15% ఆఫ్)",
+      mr: "फॅमिली कॉम्बो पॅक (15% सूट)",
+      ta: "குடும்ப காம்போ பேக் (15% தள்ளுபடி)",
+      gu: "ફેમિલી કોમ્બો પેક (15% ઓફ)",
+      pa: "ਫੈਮਿਲੀ ਕੰਬੋ ਪੈਕ (15% OFF)"
+    },
+    desc: {
+      en: "Our bestsellers together in one special-priced combo — perfect for the whole family.",
+      hi: "हमारे सबसे लोकप्रिय अचार एक साथ — पूरे परिवार के लिए बेहतरीन कीमत पर।"
+    }
+  },
+  {
     id: "seasonal_mango",
     cat: "seasonal",
     emoji: "🥭",
-    price: "₹150",
-    size: "500g",
+    badge: "",
+    rating: 4.9,
+    reviews: 64,
+    variants: [
+      { size: "500g", price: "₹150", mrp: "₹175" },
+      { size: "1kg", price: "₹280", mrp: "₹330" }
+    ],
     name: {
       en: "Fresh Mango Pickle (Summer Special)",
       hi: "ताज़ा आम का अचार (गर्मी स्पेशल)",
@@ -164,8 +263,12 @@ const PRODUCTS = [
     id: "seasonal_amla",
     cat: "seasonal",
     emoji: "🟢",
-    price: "₹160",
-    size: "500g",
+    badge: "",
+    rating: 4.7,
+    reviews: 41,
+    variants: [
+      { size: "500g", price: "₹160", mrp: "₹185" }
+    ],
     name: {
       en: "Winter Amla Pickle",
       hi: "सर्दियों का आंवला अचार",
@@ -186,8 +289,12 @@ const PRODUCTS = [
     id: "seasonal_nimbu",
     cat: "seasonal",
     emoji: "🍋",
-    price: "₹120",
-    size: "500g",
+    badge: "",
+    rating: 4.8,
+    reviews: 52,
+    variants: [
+      { size: "500g", price: "₹120", mrp: "₹140" }
+    ],
     name: {
       en: "Winter Lemon Pickle",
       hi: "सर्दियों का नींबू अचार",

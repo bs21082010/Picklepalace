@@ -13,23 +13,46 @@
 </head>
 <body>
 
+<div class="trust-bar">
+  <div class="trust-track">
+    <span data-i18n="trust_1">🚚 No-Leakage Shipping</span>
+    <span>•</span>
+    <span data-i18n="trust_2">🇮🇳 Delivering Across India</span>
+    <span>•</span>
+    <span data-i18n="trust_3">🌿 100% Natural</span>
+    <span>•</span>
+    <span data-i18n="trust_4">💵 Cash on Delivery</span>
+    <span>•</span>
+    <span data-i18n="trust_1">🚚 No-Leakage Shipping</span>
+    <span>•</span>
+    <span data-i18n="trust_2">🇮🇳 Delivering Across India</span>
+    <span>•</span>
+    <span data-i18n="trust_3">🌿 100% Natural</span>
+    <span>•</span>
+    <span data-i18n="trust_4">💵 Cash on Delivery</span>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="header-inner">
     <a href="#home" class="brand">
-      <span class="brand-icon">🥒</span>
+      <span class="brand-icon brand-icon-text">SVJ</span>
       <span class="brand-name" data-i18n="brand_name">Maa Ke Haton Ka Acchar</span>
     </a>
     <nav class="main-nav" id="mainNav">
       <a href="#home" data-i18n="nav_home">Home</a>
       <a href="#products" data-i18n="nav_products">Products</a>
       <a href="#seasonal" data-i18n="nav_seasonal">Seasonal</a>
+      <a href="#offers" data-i18n="nav_offers">Offers</a>
       <a href="#about" data-i18n="nav_about">About</a>
-      <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
       <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="header-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Cart">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
       <label class="lang-label" for="langSelect">🌐</label>
       <select id="langSelect" class="lang-select" aria-label="Language"></select>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
@@ -39,9 +62,9 @@
 
 <section id="home" class="hero">
   <div class="hero-inner">
-    <div class="hero-emoji">🥒🫙</div>
+    <div class="hero-emoji hero-emoji-text">SVJ</div>
     <h1 data-i18n="hero_title">Homemade Pickles, Made With A Mother's Love</h1>
-    <p class="hero-sub" data-i18n="hero_sub">Fresh, tasty achar made the traditional way — no preservatives, just love. Order on WhatsApp and get it delivered to your door.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Fresh, tasty achar made the traditional way — no preservatives, just love. Add to cart, order on WhatsApp and get it delivered to your door.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#products" data-i18n="hero_btn_menu">See Our Pickles</a>
       <a class="btn btn-whatsapp" id="heroWhatsApp" href="#" target="_blank" rel="noopener" data-i18n="hero_btn_order">Order on WhatsApp</a>
@@ -53,7 +76,19 @@
 <section id="products" class="section">
   <div class="section-inner">
     <h2 class="section-title" data-i18n="products_title">Our Pickles</h2>
-    <p class="section-sub" data-i18n="products_sub">All types of pickles — homemade, fresh, and full of flavour. Tap any pickle to order.</p>
+    <p class="section-sub" data-i18n="products_sub">All types of pickles — homemade, fresh, and full of flavour. Add to cart or order on WhatsApp.</p>
+    <div class="shop-tools">
+      <input type="search" id="searchInput" class="search-box" data-i18n-placeholder="search_placeholder" placeholder="Search pickles...">
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all" data-i18n="filter_all">All</button>
+        <button class="chip" data-filter="mango" data-i18n="filter_mango">Mango</button>
+        <button class="chip" data-filter="spicy" data-i18n="filter_spicy">Spicy</button>
+        <button class="chip" data-filter="sweet" data-i18n="filter_sweet">Sweet</button>
+        <button class="chip" data-filter="mixed" data-i18n="filter_mixed">Mixed</button>
+        <button class="chip" data-filter="combo" data-i18n="filter_combo">Combos</button>
+      </div>
+    </div>
+    <p class="search-empty" id="searchEmpty" data-i18n="search_no_results" style="display:none">No pickles found. Try another word.</p>
     <div class="product-grid" id="productGrid"></div>
   </div>
 </section>
@@ -63,6 +98,25 @@
     <h2 class="section-title" data-i18n="seasonal_title">🌿 Seasonal Pickles</h2>
     <p class="section-sub" data-i18n="seasonal_sub">Special pickles made only in their season — available for a short time, so grab them while they last!</p>
     <div class="product-grid" id="seasonalGrid"></div>
+  </div>
+</section>
+
+<section id="offers" class="section section-offers">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="offers_title">💰 Special Offers</h2>
+    <p class="section-sub" data-i18n="offers_sub">Save more with our combo packs — perfect for gifting and families.</p>
+    <div class="offer-banners" id="offerBanners"></div>
+  </div>
+</section>
+
+<section id="howto" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="howto_title">How To Order</h2>
+    <div class="howto-steps">
+      <div class="howto-step"><span class="step-num">1</span><strong data-i18n="howto_1">Choose your pickles</strong><p data-i18n="howto_1d">Browse, add to cart, pick your jar sizes.</p></div>
+      <div class="howto-step"><span class="step-num">2</span><strong data-i18n="howto_2">Send order on WhatsApp</strong><p data-i18n="howto_2d">Your cart opens in WhatsApp — add your name & address.</p></div>
+      <div class="howto-step"><span class="step-num">3</span><strong data-i18n="howto_3">Get it delivered</strong><p data-i18n="howto_3d">We confirm, pack with care and deliver to your door.</p></div>
+    </div>
   </div>
 </section>
 
@@ -96,7 +150,14 @@
 <section id="reviews" class="section">
   <div class="section-inner">
     <h2 class="section-title" data-i18n="reviews_title">What Our Customers Say</h2>
+    <div class="rating-summary">
+      <span class="rating-big">★ 4.8</span>
+      <span class="rating-text" data-i18n="rating_summary">based on 1,200+ happy customers</span>
+    </div>
     <div class="review-grid" id="reviewGrid"></div>
+    <div class="send-review">
+      <button class="btn btn-primary" id="sendReviewBtn" data-i18n="review_send_btn">Send Your Review</button>
+    </div>
   </div>
 </section>
 
@@ -104,6 +165,41 @@
   <div class="section-inner">
     <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
     <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<section id="track" class="section section-track">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="track_title">📦 Track Your Order</h2>
+    <p class="section-sub" data-i18n="track_sub">Send us your order ID on WhatsApp and we will update you in minutes.</p>
+    <form class="track-form" id="trackForm">
+      <input type="text" id="trackInput" data-i18n-placeholder="track_placeholder" placeholder="Your order ID (e.g. MKHA-1024)" required>
+      <button type="submit" class="btn btn-whatsapp" data-i18n="track_btn">Track on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section id="policies" class="section">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="policies_title">Our Policies</h2>
+    <div class="faq-list" id="policyList">
+      <div class="faq-item">
+        <button class="faq-question"><span data-i18n="pol_shipping_title">Shipping Policy</span><span class="faq-arrow">▼</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="pol_shipping_body"></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span data-i18n="pol_refund_title">Refund Policy</span><span class="faq-arrow">▼</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="pol_refund_body"></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span data-i18n="pol_privacy_title">Privacy Policy</span><span class="faq-arrow">▼</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="pol_privacy_body"></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span data-i18n="pol_terms_title">Terms of Service</span><span class="faq-arrow">▼</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="pol_terms_body"></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -136,6 +232,14 @@
       <a class="btn btn-whatsapp btn-large" id="contactWhatsApp" href="#" target="_blank" rel="noopener" data-i18n="contact_btn_whatsapp">Chat on WhatsApp</a>
       <a class="btn btn-call btn-large" id="contactCall" href="#" data-i18n="contact_btn_call">Call Us</a>
     </div>
+    <div class="newsletter">
+      <h3 data-i18n="newsletter_title">Get Offers on WhatsApp</h3>
+      <p data-i18n="newsletter_sub">Be the first to know about new pickles and special offers.</p>
+      <form class="track-form" id="newsletterForm">
+        <input type="text" id="newsletterInput" data-i18n-placeholder="newsletter_placeholder" placeholder="Your name" required>
+        <button type="submit" class="btn btn-primary" data-i18n="newsletter_btn">Join Now</button>
+      </form>
+    </div>
     <p class="contact-note" data-i18n="contact_note">Delivery available in Ambikapur. Order for other cities by WhatsApp — we will help you arrange delivery.</p>
   </div>
 </section>
@@ -144,8 +248,33 @@
   <div class="footer-inner">
     <p data-i18n="footer_line1">Maa Ke Haton Ka Acchar © 2026 — Made with ❤️ in Ambikapur</p>
     <p data-i18n="footer_line2">Homemade pickles, delivered to your home.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook" id="fbLink">📘</a>
+      <a href="#" aria-label="Instagram" id="igLink">📸</a>
+      <a href="#" aria-label="YouTube" id="ytLink">▶️</a>
+    </div>
   </div>
 </footer>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3 data-i18n="cart_title">Your Cart</h3>
+    <button class="cart-close" id="cartClose" aria-label="Close">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter">
+    <div class="cart-total-row">
+      <span data-i18n="cart_total">Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="btn btn-whatsapp btn-large cart-checkout" id="cartCheckout" data-i18n="cart_checkout">Order via WhatsApp</button>
+    <button class="btn btn-call cart-clear" id="cartClear" data-i18n="cart_clear">Clear Cart</button>
+  </div>
+</aside>
+
+<a class="float-wa" id="floatWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
 <script src="languages.js"></script>
 <script src="products.js"></script>
