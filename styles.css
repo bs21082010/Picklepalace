@@ -56,6 +56,20 @@ body {
 
 .brand-icon { font-size: 1.4rem; }
 
+.brand-icon-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--dark);
+  font-weight: 900;
+  font-size: 0.8rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+
 .main-nav {
   display: flex;
   gap: 4px;
@@ -115,6 +129,21 @@ body {
 }
 
 .hero-emoji { font-size: 3rem; margin-bottom: 8px; }
+
+.hero-emoji-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--dark);
+  font-weight: 900;
+  font-size: 1.7rem;
+  width: 92px;
+  height: 92px;
+  border-radius: 26px;
+  margin: 0 auto 14px;
+  letter-spacing: 1px;
+}
 
 .hero h1 {
   font-size: clamp(1.6rem, 4.5vw, 2.6rem);
