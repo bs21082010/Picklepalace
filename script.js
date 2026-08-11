@@ -1,9 +1,11 @@
 /* Maa Ke Haton Ka Acchar — main script.
-   HOW TO EDIT: Change the 3 lines below (your numbers & email). Everything else works automatically. */
+   HOW TO EDIT: open editor.html (double-click) to change products, prices,
+   WhatsApp number, phone, email, social links, brand name. Then run
+   deploy-update.ps1 to publish. */
 
-const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // your WhatsApp number, with country code, no + or spaces
-const PHONE_NUMBER = "+91XXXXXXXXXX";   // your phone number for the "Call Us" button
-const EMAIL = "your@email.com";         // your email
+const WHATSAPP_NUMBER = SITE_CONFIG.whatsapp;
+const PHONE_NUMBER = SITE_CONFIG.phone;
+const EMAIL = SITE_CONFIG.email;
 
 const WA_BASE = "https://wa.me/" + WHATSAPP_NUMBER.replace(/[^0-9]/g, "");
 
@@ -62,6 +64,9 @@ function updateOrderLinks() {
   document.getElementById("contactPhoneLink").href = "tel:" + PHONE_NUMBER.replace(/[^0-9+]/g, "");
   document.getElementById("contactCall").href = "tel:" + PHONE_NUMBER.replace(/[^0-9+]/g, "");
   document.getElementById("contactEmailLink").href = "mailto:" + EMAIL;
+  document.getElementById("fbLink").href = SITE_CONFIG.facebook;
+  document.getElementById("igLink").href = SITE_CONFIG.instagram;
+  document.getElementById("ytLink").href = SITE_CONFIG.youtube;
 }
 
 /* -------------------- Product helpers -------------------- */

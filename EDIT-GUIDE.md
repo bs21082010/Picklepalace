@@ -1,31 +1,39 @@
 # ✏️ EDIT GUIDE — How to update your website
 
-**Files you may ever need to touch:**
+**Easiest way (recommended): use the visual editor**
+1. Double-click **`editor.html`** — it opens in your browser (no internet needed)
+2. Tab **"Store Details"**: change WhatsApp number, phone, email, social links, brand name, address
+3. Tab **"Products"**: change names, prices, sizes, ratings, add or remove pickles
+4. Click **"Save & Download"** — 3 files download to your Downloads folder
+5. Double-click **`deploy-update.ps1`** — it publishes the website, rebuilds the app, and backs up to GitHub. Done in about 1 minute.
+
+**Files you may ever need to touch (only if you like editing text files):**
 | File | What it controls |
 |---|---|
-| `script.js` | Your phone/WhatsApp/email numbers |
+| `site-config.js` | Your phone/WhatsApp/email numbers, social links |
 | `products.js` | The pickle list, prices, sizes, seasonal items |
 | `languages.js` | All the words on the site (9 languages) |
 | `index.html` | Page structure (rarely needed) |
 
-**To open a file for editing:** right-click the file → **Open with** → **Notepad** (or VS Code if you have it). Type your changes, **Ctrl+S** to save, then publish again (see PUBLISH GUIDE).
+**To open a file for editing:** right-click the file → **Open with** → **Notepad** (or VS Code if you have it). Type your changes, **Ctrl+S** to save, then run `deploy-update.ps1` to publish again.
 
 ---
 
 ## 1. WhatsApp / phone / email (most important!)
 
-Open `script.js` with Notepad. Near the top you'll see:
+Open `site-config.js` with Notepad (or use editor.html → Store Details). Near the top you'll see:
 
 ```
-const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // your WhatsApp number
-const PHONE_NUMBER = "+91XXXXXXXXXX";
-const EMAIL = "your@email.com";
+const SITE_CONFIG = {
+  whatsapp: "91XXXXXXXXXX",
+  phone: "+91XXXXXXXXXX",
+  email: "your@email.com",
 ```
 
 Replace the `XXXX...` with your real numbers:
-- Example WhatsApp: `const WHATSAPP_NUMBER = "919876543210";` (country code 91 + your 10-digit number, NO + or spaces)
-- Example phone: `const PHONE_NUMBER = "+919876543210";`
-- Example email: `const EMAIL = "maakehatonkaacchar@gmail.com";`
+- Example WhatsApp: `whatsapp: "919876543210",` (country code 91 + your 10-digit number, NO + or spaces)
+- Example phone: `phone: "+919876543210",`
+- Example email: `email: "maakehatonkaacchar@gmail.com",`
 
 Save. Done — every WhatsApp button on the site now goes to you.
 
@@ -42,7 +50,7 @@ Change `₹150` to `₹180`, or `500g` to `1kg`. Save.
 
 ## 3. Add a new pickle
 
-Open `products.js`. Find a product block that looks like `{ ... },` (copy one, like the Mango one). Paste it right after (inside the outer `[ ... ]` list), then change its `id`, `emoji`, `price`, `size`, `name`, `desc`.
+Open `products.js`. Find a product block that looks like `{ ... },` (copy one, like the Mango one). Paste it right after (inside the outer `[ ... ]` list), then change its `id`, `price`, `size`, `name`, `desc`.
 - For a **seasonal** pickle, write `cat: "seasonal",` — it appears in the Seasonal section with a green "Seasonal" tag.
 - For a **normal** pickle, write `cat: "regular",`.
 - The `name` block can have 9 languages; for languages you don't fill, the site shows the English name — that's fine.
@@ -85,4 +93,4 @@ Open `languages.js`, search for `contact_hours` or `contact_address` (English se
 
 ---
 
-**Remember:** after any edit, re-publish (drag the folder again on app.netlify.com/drop). The website link stays the same.
+**Remember:** after any edit, run `deploy-update.ps1` to publish. The website link stays the same: https://maa-achaar.vercel.app
