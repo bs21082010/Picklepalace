@@ -1,4 +1,4 @@
-const CACHE = "mkha-v2";
+const CACHE = "mkha-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -13,7 +13,7 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS).catch(() => {})));
   self.skipWaiting();
 });
 
@@ -25,17 +25,33 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (event.request.method !== "GET" || url.origin !== self.location.origin) return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request)
+    (async () => {
+      const cached = await caches.match(event.request);
+
+      if (event.request.mode === "navigate") {
+        try {
+          const fresh = await fetch(event.request);
+          const copy = fresh.clone();
+          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          return fresh;
+        } catch (err) {
+          return cached || caches.match("./index.html");
+        }
+      }
+
+      const network = fetch(event.request)
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((cache) => cache.put(event.request, copy));
           return res;
         })
-        .catch(() => caches.match("./index.html"));
-    })
+        .catch(() => null);
+
+      return cached || network;
+    })()
   );
 });
