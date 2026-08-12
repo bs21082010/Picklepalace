@@ -1,4 +1,4 @@
-const CACHE = "mkha-v1";
+const CACHE = "mkha-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const ASSETS = [
   "./script.js",
   "./languages.js",
   "./products.js",
+  "./banner.svg",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png"

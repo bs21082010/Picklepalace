@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 $root = "C:\Users\amin\maakehatonkaacchar"
 $dl = "$env:USERPROFILE\Downloads"
-$srcFiles = @("index.html", "styles.css", "script.js", "languages.js", "products.js", "site-config.js", "banner.svg")
+$srcFiles = @("index.html", "styles.css", "script.js", "languages.js", "products.js", "site-config.js", "banner.svg", "sw.js", "manifest.json")
 $jsFiles = @("script.js", "languages.js", "products.js", "site-config.js")
 
 Write-Host ""
