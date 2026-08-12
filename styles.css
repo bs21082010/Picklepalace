@@ -184,11 +184,24 @@ h1, h2, h3, h4, strong, .brand-name, .section-title, .product-name {
   cursor: pointer;
 }
 
+/* ---------- Hero banner (JhaJi style full-width visual) ---------- */
+.hero-banner {
+  width: 100%;
+  background: #fff6f1;
+}
+
+.hero-banner img {
+  display: block;
+  width: 100%;
+  height: clamp(230px, 26vw, 360px);
+  object-fit: cover;
+}
+
 /* ---------- Hero ---------- */
 .hero {
-  background: linear-gradient(180deg, #fff0f6 0%, var(--cream) 100%);
+  background: var(--cream);
   text-align: center;
-  padding: 56px 20px 48px;
+  padding: 44px 20px 40px;
 }
 
 .hero-emoji { font-size: 3rem; margin-bottom: 8px; }
