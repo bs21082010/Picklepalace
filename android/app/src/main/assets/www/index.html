@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maa Ke Haton Ka Acchar</title>
-<meta name="description" content="Maa Ke Haton Ka Acchar — homemade pickles made with mother's hands. Ambikapur, Chhattisgarh.">
+<title>Buy Homemade Pickles Online | Maa Ke Haton Ka Acchar</title>
+<meta name="description" content="Maa Ke Haton Ka Acchar is an online pickle store selling homemade achar made with a mother's hands in Ambikapur, Chhattisgarh. 100% natural, no preservatives. No-Leakage shipping across India.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
-<meta name="theme-color" content="#3a2e1f">
+<meta name="theme-color" content="#ea72ab">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -73,10 +76,18 @@
   </div>
 </section>
 
-<section id="products" class="section">
+<section id="products" class="section section-products">
   <div class="section-inner">
     <h2 class="section-title" data-i18n="products_title">Our Pickles</h2>
     <p class="section-sub" data-i18n="products_sub">All types of pickles — homemade, fresh, and full of flavour. Add to cart or order on WhatsApp.</p>
+    <div class="cat-circles" id="catCircles">
+      <button class="cat-circle active" data-filter="all"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_all">All</span></button>
+      <button class="cat-circle" data-filter="mango"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_mango">Mango</span></button>
+      <button class="cat-circle" data-filter="spicy"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_spicy">Spicy</span></button>
+      <button class="cat-circle" data-filter="sweet"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_sweet">Sweet</span></button>
+      <button class="cat-circle" data-filter="mixed"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_mixed">Mixed</span></button>
+      <button class="cat-circle" data-filter="combo"><span class="cat-circle-img"><img class="mark-img" src="brand.svg" alt=""></span><span class="cat-circle-name" data-i18n="filter_combo">Combos</span></button>
+    </div>
     <div class="shop-tools">
       <input type="search" id="searchInput" class="search-box" data-i18n-placeholder="search_placeholder" placeholder="Search pickles...">
       <div class="filter-chips" id="filterChips">
@@ -120,7 +131,7 @@
   </div>
 </section>
 
-<section id="about" class="section">
+<section id="about" class="section section-about">
   <div class="section-inner">
     <h2 class="section-title" data-i18n="about_title">Our Story</h2>
     <div class="about-content">
@@ -246,13 +257,59 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p data-i18n="footer_line1">Maa Ke Haton Ka Acchar © 2026 — Made with love in Ambikapur</p>
-    <p data-i18n="footer_line2">Homemade pickles, delivered to your home.</p>
-    <div class="social-links">
-      <a href="#" aria-label="Facebook" id="fbLink">FB</a>
-      <a href="#" aria-label="Instagram" id="igLink">IG</a>
-      <a href="#" aria-label="YouTube" id="ytLink">YT</a>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4 data-i18n="footer_get_touch">Get In Touch</h4>
+        <ul class="footer-list">
+          <li data-i18n="footer_address">Ambikapur, Chhattisgarh, India — 497001</li>
+          <li data-i18n="footer_hours">Every day, 9:00 AM – 8:00 PM</li>
+          <li><a id="footerPhoneLink" href="#">+91 XXXXX XXXXX</a></li>
+          <li><a id="footerEmailLink" href="#">your@email.com</a></li>
+        </ul>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" id="footerFbLink">FB</a>
+          <a href="#" aria-label="Instagram" id="footerIgLink">IG</a>
+          <a href="#" aria-label="YouTube" id="footerYtLink">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_policies">Policies</h4>
+        <ul class="footer-list">
+          <li><a href="#policies" data-i18n="pol_shipping_title">Shipping Policy</a></li>
+          <li><a href="#policies" data-i18n="pol_refund_title">Refund Policy</a></li>
+          <li><a href="#policies" data-i18n="pol_privacy_title">Privacy Policy</a></li>
+          <li><a href="#policies" data-i18n="pol_terms_title">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_shop">Shop</h4>
+        <ul class="footer-list">
+          <li><a href="#products" data-i18n="filter_all">All Pickles</a></li>
+          <li><a href="#products" data-i18n="filter_mango">Mango Pickles</a></li>
+          <li><a href="#products" data-i18n="filter_spicy">Spicy Pickles</a></li>
+          <li><a href="#products" data-i18n="filter_sweet">Sweet Pickles</a></li>
+          <li><a href="#products" data-i18n="filter_mixed">Mixed Pickles</a></li>
+          <li><a href="#seasonal" data-i18n="nav_seasonal">Seasonal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_links">Useful Links</h4>
+        <ul class="footer-list">
+          <li><a href="#track" data-i18n="nav_track">Track Order</a></li>
+          <li><a href="#about" data-i18n="about_title">Our Story</a></li>
+          <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact Us</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-trust">
+      <span>★ 4.8 / 5</span>
+      <span data-i18n="footer_trust_reviews">1,200+ Happy Customers</span>
+      <span data-i18n="trust_1">No-Leakage Shipping</span>
+      <span data-i18n="trust_4">Cash on Delivery</span>
+    </div>
+    <p class="footer-copy" data-i18n="footer_line1">Maa Ke Haton Ka Acchar © 2026 — Made with love in Ambikapur</p>
+    <p class="footer-tag" data-i18n="footer_line2">Homemade pickles, delivered to your home.</p>
   </div>
 </footer>
 

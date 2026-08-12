@@ -64,9 +64,11 @@ function updateOrderLinks() {
   document.getElementById("contactPhoneLink").href = "tel:" + PHONE_NUMBER.replace(/[^0-9+]/g, "");
   document.getElementById("contactCall").href = "tel:" + PHONE_NUMBER.replace(/[^0-9+]/g, "");
   document.getElementById("contactEmailLink").href = "mailto:" + EMAIL;
-  document.getElementById("fbLink").href = SITE_CONFIG.facebook;
-  document.getElementById("igLink").href = SITE_CONFIG.instagram;
-  document.getElementById("ytLink").href = SITE_CONFIG.youtube;
+  document.getElementById("footerFbLink").href = SITE_CONFIG.facebook;
+  document.getElementById("footerIgLink").href = SITE_CONFIG.instagram;
+  document.getElementById("footerYtLink").href = SITE_CONFIG.youtube;
+  document.getElementById("footerPhoneLink").href = "tel:" + PHONE_NUMBER.replace(/[^0-9+]/g, "");
+  document.getElementById("footerEmailLink").href = "mailto:" + EMAIL;
 }
 
 /* -------------------- Product helpers -------------------- */
@@ -179,13 +181,24 @@ function renderSeasonal() {
   PRODUCTS.filter((p) => p.cat === "seasonal").forEach((p) => grid.appendChild(makeProductCard(p)));
 }
 
+function setFilter(filter) {
+  currentFilter = filter;
+  document.querySelectorAll(".chip").forEach((c) => c.classList.toggle("active", c.getAttribute("data-filter") === filter));
+  document.querySelectorAll(".cat-circle").forEach((c) => c.classList.toggle("active", c.getAttribute("data-filter") === filter));
+  renderProducts();
+}
+
 document.getElementById("filterChips").addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
-  document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-  chip.classList.add("active");
-  currentFilter = chip.getAttribute("data-filter");
-  renderProducts();
+  setFilter(chip.getAttribute("data-filter"));
+});
+
+document.getElementById("catCircles").addEventListener("click", (e) => {
+  const circle = e.target.closest(".cat-circle");
+  if (!circle) return;
+  setFilter(circle.getAttribute("data-filter"));
+  document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 document.getElementById("searchInput").addEventListener("input", (e) => {
