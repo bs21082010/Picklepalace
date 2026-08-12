@@ -1,5 +1,13 @@
 {
   "rewrites": [
     { "source": "/svj-admin", "destination": "/svj-admin.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, max-age=0" }
+      ]
+    }
   ]
 }
