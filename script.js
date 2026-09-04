@@ -77,6 +77,29 @@ function productName(p) { return p.name[currentLang] || p.name.en; }
 function productDesc(p) { return p.desc[currentLang] || p.desc.en || ""; }
 function money(s) { return s; }
 
+function parseGrams(sizeStr) {
+  var s = sizeStr.toLowerCase();
+  if (s.indexOf("kg") !== -1) {
+    var m = s.match(/(\d+(?:\.\d+)?)\s*kg/);
+    return m ? parseFloat(m[1]) * 1000 : 1000;
+  }
+  if (s.indexOf("\u00d7") !== -1) {
+    var parts = s.split("\u00d7").map(function(p) { return p.trim(); });
+    var count = parseInt(parts[0], 10);
+    var grams = parseInt(parts[1].replace(/[^0-9]/g, ""), 10);
+    return count * grams || 0;
+  }
+  var m2 = s.match(/(\d+)/);
+  return m2 ? parseInt(m2[1], 10) : 0;
+}
+
+function pricePer100g(priceStr, sizeStr) {
+  var price = parseInt(String(priceStr).replace(/[^0-9]/g, ""), 10);
+  var grams = parseGrams(sizeStr);
+  if (!grams || !price) return "";
+  return "\u20b9" + Math.round(price * 100 / grams) + " / 100g";
+}
+
 function starsHTML(rating) {
   let s = "";
   for (let i = 1; i <= 5; i++) s += i <= Math.round(rating) ? "★" : "☆";
@@ -99,24 +122,39 @@ function makeProductCard(p) {
 
   let variantOptions = "";
   p.variants.forEach((v, i) => {
-    variantOptions += '<option value="' + i + '">' + v.size + " — " + v.price + (v.mrp !== v.price ? " (MRP " + v.mrp + ")" : "") + "</option>";
+    variantOptions += '<option value="' + i + '">' + v.size + " \u2014 " + v.price + (v.mrp !== v.price ? " (MRP " + v.mrp + ")" : "") + "</option>";
   });
+
+  var featuresHTML = '<div class="product-features">';
+  PRODUCT_FEATURES.forEach(function(f) {
+    featuresHTML += '<span class="product-feature">' + f + '</span>';
+  });
+  featuresHTML += '</div>';
+
+  var v0 = p.variants[0];
+  var pp100 = pricePer100g(v0.price, v0.size);
 
   card.innerHTML =
     badge +
     (p.cat === "seasonal" ? '<span class="seasonal-tag">' + t("seasonal_tag") + "</span>" : "") +
-    '<div class="product-emoji product-emoji-text"><img class="mark-img" src="brand.svg" alt="SVJ"></div>' +
+    '<div class="product-emoji"><img class="mark-img" src="brand.svg" alt=""></div>' +
     '<div class="product-body">' +
       '<h3 class="product-name"></h3>' +
-      '<div class="product-rating">' + starsHTML(p.rating) + ' <span class="reviews-count">' + p.rating + " (" + p.reviews + " " + t("reviews_suffix") + ")</span></div>" +
+      '<div class="product-rating">' + starsHTML(p.rating) + '</div>' +
       '<p class="product-desc"></p>' +
+      featuresHTML +
       '<div class="product-variant-row">' +
         '<select class="product-size-select" aria-label="Size"></select>' +
       "</div>" +
-      '<div class="product-meta">' +
-        '<span class="product-price"><span class="product-mrp"></span><span class="product-sale"></span></span>' +
+      '<div class="product-pricing">' +
+        '<span class="product-sale"></span>' +
+        '<span class="product-mrp"></span>' +
+        (pp100 ? '<span class="product-pp100">' + pp100 + '</span>' : '') +
       "</div>" +
-      '<button class="product-order">' + (soldout ? t("badge_soldout") : t("add_to_cart")) + "</button>" +
+      '<div class="product-actions">' +
+        '<button class="btn-add-cart">' + (soldout ? t("badge_soldout") : t("add_to_cart")) + "</button>" +
+        (!soldout ? '<button class="btn-buy-now">' + t("buy_now") + "</button>" : '') +
+      "</div>" +
     "</div>";
 
   card.querySelector(".product-name").textContent = productName(p);
@@ -130,22 +168,34 @@ function makeProductCard(p) {
 
   function updatePrice() {
     const v = variantFor(p, parseInt(select.value, 10));
+    saleEl.textContent = v.price;
     if (v.mrp && v.mrp !== v.price) {
       mrpEl.textContent = "MRP " + v.mrp;
+      mrpEl.style.display = "";
     } else {
-      mrpEl.textContent = "";
+      mrpEl.style.display = "none";
     }
-    saleEl.textContent = v.price;
+    var pp = pricePer100g(v.price, v.size);
+    var ppEl = card.querySelector(".product-pp100");
+    if (ppEl) ppEl.textContent = pp;
   }
   updatePrice();
   select.addEventListener("change", updatePrice);
 
-  const orderBtn = card.querySelector(".product-order");
+  const addCartBtn = card.querySelector(".btn-add-cart");
   if (soldout) {
-    orderBtn.classList.add("soldout");
-    orderBtn.disabled = true;
+    addCartBtn.classList.add("soldout");
+    addCartBtn.disabled = true;
   } else {
-    orderBtn.addEventListener("click", () => addToCart(p, parseInt(select.value, 10)));
+    addCartBtn.addEventListener("click", function() { addToCart(p, parseInt(select.value, 10)); });
+  }
+
+  var buyNowBtn = card.querySelector(".btn-buy-now");
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener("click", function() {
+      addToCart(p, parseInt(select.value, 10));
+      openCart();
+    });
   }
   return card;
 }
@@ -371,22 +421,6 @@ document.getElementById("cartClear").addEventListener("click", () => {
 function renderReviews() {
   const grid = document.getElementById("reviewGrid");
   grid.innerHTML = "";
-  const reviews = [
-    { text: t("review_1_text"), author: t("review_1_author") },
-    { text: t("review_2_text"), author: t("review_2_author") },
-    { text: t("review_3_text"), author: t("review_3_author") }
-  ];
-  reviews.forEach((r) => {
-    const card = document.createElement("div");
-    card.className = "review-card";
-    card.innerHTML =
-      '<div class="review-stars">★★★★★</div>' +
-      '<p class="review-text"></p>' +
-      '<div class="review-author"></div>';
-    card.querySelector(".review-text").textContent = r.text;
-    card.querySelector(".review-author").textContent = r.author;
-    grid.appendChild(card);
-  });
   const note = document.createElement("p");
   note.className = "review-note";
   note.textContent = t("reviews_note");
@@ -480,6 +514,24 @@ window.addEventListener("scroll", () => {
   backTop.classList.toggle("show", window.scrollY > 500);
 });
 backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+/* -------------------- Mobile bottom bar -------------------- */
+
+(function () {
+  var mbbCart = document.getElementById("mbbCart");
+  var mbbCall = document.getElementById("mbbCall");
+  var mbbSearch = document.querySelector(".mbb-search");
+  if (mbbCart) mbbCart.addEventListener("click", function (e) { e.preventDefault(); document.getElementById("cartBtn").click(); });
+  if (mbbCall) mbbCall.addEventListener("click", function (e) { e.preventDefault(); var a = document.getElementById("contactCall"); if (a) a.click(); });
+  if (mbbSearch) {
+    mbbSearch.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
+      var inp = document.getElementById("searchInput");
+      if (inp) setTimeout(function () { inp.focus(); }, 400);
+    });
+  }
+})();
 
 /* -------------------- PWA / installable app -------------------- */
 

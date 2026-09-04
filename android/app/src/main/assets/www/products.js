@@ -1,15 +1,16 @@
 /* Maa Ke Haton Ka Acchar — product list.
    HOW TO EDIT: change name / price / size / emoji. To add a product: copy one whole
-   block { ... }, paste after the last one, edit it. Save. Done!
+   block { ... }, paste after the last one, edit it. Save. Done! */
 
-   Fields:
-   - cat: "mango" | "spicy" | "sweet" | "mixed" | "combo"   (filter category)
-          use cat: "seasonal" for the Seasonal section
-   - badge: "" | "new" | "bestseller" | "soldout" | "offer"  (shown on the card)
-   - rating: 0-5, reviews: count shown under the name
-   - variants: sizes with price and mrp (mrp only if discounted; use same as price
-     when no discount). Add or remove variants freely.
-   - name/desc: can be in 9 languages; missing languages fall back to English. */
+/* Universal features shown on every product card */
+const PRODUCT_FEATURES = [
+  "\uD83C\uDF3F Homemade",
+  "\u2600\uFE0F Sun-dried",
+  "\uD83D\uDEE2\uFE0F Mustard oil",
+  "\uD83D\uDEAB No preservatives",
+  "\uD83E\uDDC2 Natural spices"
+];
+
 const PRODUCTS = [
   {
     id: "mango",
