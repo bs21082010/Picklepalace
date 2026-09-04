@@ -53,6 +53,10 @@
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="header-right">
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" class="lang-toggle-btn is-active" id="langToggleEn">English</button>
+        <button type="button" class="lang-toggle-btn" id="langToggleHi">हिन्दी</button>
+      </div>
       <button class="cart-btn" id="cartBtn" aria-label="Cart">
         <span data-i18n="cart_btn">Cart</span><span class="cart-count" id="cartCount">0</span>
       </button>
@@ -112,6 +116,7 @@
   <div class="section-inner">
     <h2 class="section-title" data-i18n="seasonal_title">Seasonal Pickles</h2>
     <p class="section-sub" data-i18n="seasonal_sub">Special pickles made only in their season — available for a short time, so grab them while they last!</p>
+    <p class="seasonal-countdown" id="seasonalCountdown">only 18 days left this season</p>
     <div class="product-grid" id="seasonalGrid"></div>
   </div>
 </section>
@@ -146,6 +151,37 @@
       <div class="process-step"><span class="step-num">04</span><h3 data-i18n="howitsmade_step4">Sun</h3><p data-i18n="howitsmade_step4d">The achar matures in the sun the traditional way.</p></div>
       <div class="process-step"><span class="step-num">05</span><h3 data-i18n="howitsmade_step5">Mature</h3><p data-i18n="howitsmade_step5d">Flavours develop over time for the perfect taste.</p></div>
       <div class="process-step"><span class="step-num">06</span><h3 data-i18n="howitsmade_step6">Pack</h3><p data-i18n="howitsmade_step6d">Each jar is sealed and prepared for delivery.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="section section-quiz">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="quiz_title">Find Your Perfect Achaar</h2>
+    <p class="section-sub" data-i18n="quiz_sub">Answer a few quick questions and we'll match you with the pickle you'll love.</p>
+    <div class="quiz-box" id="quizBox">
+      <div class="quiz-steps" id="quizStep">
+        <h3 class="quiz-question"></h3>
+        <div class="quiz-opts" id="quizOpts"></div>
+      </div>
+      <div class="quiz-result" id="quizResult" style="display:none">
+        <p class="quiz-result-label" data-i18n="quiz_your_match">Your perfect match:</p>
+        <h3 class="quiz-result-name"></h3>
+        <p class="quiz-result-detail"></p>
+        <button type="button" class="btn btn-primary quiz-add-btn" data-i18n="quiz_result_take">Try it</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gifts" class="section section-gifts">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="gifts_title">Achaar Gift Boxes</h2>
+    <p class="section-sub" data-i18n="gifts_sub">Gift a little home — beautiful boxes for every occasion.</p>
+    <div class="gift-grid" id="giftGrid"></div>
+    <div class="gift-note">
+      <label for="giftMessage" data-i18n="gifts_message_label">🎁 Add a personal message (optional)</label>
+      <input type="text" id="giftMessage" data-i18n-placeholder="gifts_message_placeholder" placeholder="A note for the recipient...">
     </div>
   </div>
 </section>
@@ -201,12 +237,17 @@
 
 <section id="track" class="section section-track">
   <div class="section-inner">
-    <h2 class="section-title" data-i18n="track_title">Track Your Order</h2>
-    <p class="section-sub" data-i18n="track_sub">Send us your order ID on WhatsApp and we will update you in minutes.</p>
+    <h2 class="section-title" data-i18n="track_steps_title">Track Your Order</h2>
+    <p class="section-sub" data-i18n="track_steps_sub">Enter your order ID to see live status, or send it to us on WhatsApp.</p>
     <form class="track-form" id="trackForm">
       <input type="text" id="trackInput" data-i18n-placeholder="track_placeholder" placeholder="Your order ID (e.g. MKHA-1024)" required>
       <button type="submit" class="btn btn-whatsapp" data-i18n="track_btn">Track on WhatsApp</button>
     </form>
+    <div class="track-preview">
+      <p class="track-demo-label" data-i18n="track_demo">Preview a sample tracking timeline:</p>
+      <button type="button" class="btn btn-call btn-small" id="trackPreviewBtn" data-i18n="track_preview_btn">Preview Tracking</button>
+      <div class="track-timeline" id="trackTimeline"></div>
+    </div>
   </div>
 </section>
 
@@ -250,6 +291,35 @@
       <span class="map-dot">Bengaluru</span>
       <span class="map-line"></span>
       <span class="map-dot">Kolkata</span>
+    </div>
+  </div>
+</section>
+
+<section id="batch" class="section section-batch">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="batch_title">Batch Story</h2>
+    <p class="section-sub" data-i18n="batch_sub">Every jar belongs to a batch. Enter your batch number to see its story.</p>
+    <form class="track-form" id="batchForm">
+      <input type="text" id="batchInput" data-i18n-placeholder="batch_placeholder" placeholder="e.g. MKHA-0926" required>
+      <button type="button" class="btn btn-primary" id="batchCheckBtn" data-i18n="batch_check">Check Batch</button>
+    </form>
+    <div class="batch-result" id="batchResult" style="display:none"></div>
+  </div>
+</section>
+
+<section id="subscription" class="section section-subscription">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="subscription_title">Maa's Monthly Achaar Box</h2>
+    <p class="section-sub" data-i18n="subscription_sub">Never run out of achar — a fresh jar delivered to your door, regularly.</p>
+    <div class="sub-includes">
+      <p data-i18n="subscription_includes">Every delivery:</p>
+      <span data-i18n="subscription_regular">🫙 2 regular jars</span>
+      <span data-i18n="subscription_seasonal">🫙 1 seasonal jar</span>
+    </div>
+    <div class="sub-plans">
+      <button type="button" class="sub-plan" data-sub="monthly"><strong data-i18n="subscription_monthly">Monthly</strong><span data-i18n="enrollment">Enrollment · cancel anytime</span></button>
+      <button type="button" class="sub-plan" data-sub="every2"><strong data-i18n="subscription_2month">Every 2 months</strong><span data-i18n="enrollment">Enrollment · cancel anytime</span></button>
+      <button type="button" class="sub-plan" data-sub="every3"><strong data-i18n="subscription_3month">Every 3 months</strong><span data-i18n="enrollment">Enrollment · cancel anytime</span></button>
     </div>
   </div>
 </section>
@@ -336,8 +406,10 @@
         <h4 data-i18n="footer_links">Useful Links</h4>
         <ul class="footer-list">
           <li><a href="#track" data-i18n="nav_track">Track Order</a></li>
-          <li><a href="#about" data-i18n="about_title">Our Story</a></li>
-          <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+          <li><a href="#quiz" data-i18n="quiz_title">Find Your Achaar</a></li>
+          <li><a href="#gifts" data-i18n="gifts_title">Gift Boxes</a></li>
+          <li><a href="#batch" data-i18n="batch_title">Batch Story</a></li>
+          <li><a href="#subscription" data-i18n="subscription_title">Subscribe</a></li>
           <li><a href="#contact" data-i18n="nav_contact">Contact Us</a></li>
         </ul>
       </div>
