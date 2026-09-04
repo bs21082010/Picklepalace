@@ -726,6 +726,25 @@ function subscribe(plan) {
   window.open(WA_BASE + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
+/* -------------------- Scroll reveal animations -------------------- */
+
+function initReveal() {
+  var els = document.querySelectorAll(".section-inner, .process-step, .howto-step");
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(function (e) { e.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(function (e) { e.classList.add("reveal"); io.observe(e); });
+}
+
 /* -------------------- PWA / installable app -------------------- */
 
 if ("serviceWorker" in navigator) {
@@ -742,6 +761,7 @@ renderPolicies();
 renderGifts();
 renderTrackPreview();
 renderQuizStep();
+initReveal();
 
 (function () {
   var quizStart = document.getElementById("quizStart");
