@@ -4,7 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buy Homemade Pickles Online | Maa Ke Haton Ka Acchar</title>
-<meta name="description" content="Maa Ke Haton Ka Acchar is an online pickle store selling homemade achar made with a mother's hands in Ambikapur, Chhattisgarh. 100% natural, no preservatives. No-Leakage shipping across India.">
+<meta name="description" content="Maa Ke Haton Ka Acchar is an online pickle store selling homemade achar made with a mother's hands in Ambikapur, Chhattisgarh. 100% natural, no preservatives, sun-dried spices. No-leakage shipping across India with Cash on Delivery.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://maa-achaar.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Maa Ke Haton Ka Acchar — Homemade Pickles, Made With a Mother's Love">
+<meta property="og:description" content="100% natural homemade achar from Ambikapur. No preservatives, sun-dried spices, no-leakage shipping across India.">
+<meta property="og:url" content="https://maa-achaar.vercel.app/">
+<meta property="og:image" content="https://maa-achaar.vercel.app/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Maa Ke Haton Ka Acchar">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maa Ke Haton Ka Acchar — Homemade Pickles">
+<meta name="twitter:description" content="100% natural homemade achar from Ambikapur. Click to order on WhatsApp.">
+<meta name="twitter:image" content="https://maa-achaar.vercel.app/og-banner.png">
+
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
@@ -12,7 +32,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="banner.svg">
 <link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Maa Ke Haton Ka Acchar",
+  "description": "Online store selling homemade, preservative-free Indian pickles made in Ambikapur, Chhattisgarh.",
+  "url": "https://maa-achaar.vercel.app/",
+  "image": "https://maa-achaar.vercel.app/og-banner.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ambikapur",
+    "addressRegion": "Chhattisgarh",
+    "postalCode": "497001",
+    "addressCountry": "IN"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Maa Ke Haton Ka Acchar"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -88,6 +131,23 @@
       <a class="btn btn-whatsapp" id="heroWhatsApp" href="#" target="_blank" rel="noopener" data-i18n="hero_btn_order">Order on WhatsApp</a>
     </div>
     <p class="hero-location" data-i18n="hero_location">📍 Ambikapur, Chhattisgarh</p>
+  </div>
+</section>
+
+<section class="trust-feature-strip" id="trustFeatures" aria-label="Why choose us">
+  <div class="section-inner strip-grid">
+    <div class="tf-item"><span class="tf-icon">🌿</span><div><strong data-i18n="tf_natural">100% Natural</strong><small data-i18n="tf_natural_d">No preservatives, ever</small></div></div>
+    <div class="tf-item"><span class="tf-icon">🚚</span><div><strong data-i18n="tf_shipping">Pan-India Delivery</strong><small data-i18n="tf_shipping_d">Fresh to your door</small></div></div>
+    <div class="tf-item"><span class="tf-icon">📦</span><div><strong data-i18n="tf_leakproof">No-Leakage Packing</strong><small data-i18n="tf_leakproof_d">Safely sealed jars</small></div></div>
+    <div class="tf-item"><span class="tf-icon">🏺</span><div><strong data-i18n="tf_recipe">Family Recipe</strong><small data-i18n="tf_recipe_d">Made with a mother's hands</small></div></div>
+  </div>
+</section>
+
+<section id="featured" class="section section-featured">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="featured_title">Most-Loved Jars</h2>
+    <p class="section-sub" data-i18n="featured_sub">Our customers' favourites — the pickles they order again and again.</p>
+    <div class="product-grid" id="featuredGrid"></div>
   </div>
 </section>
 

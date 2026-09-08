@@ -47,6 +47,7 @@ function applyLanguage() {
   renderGifts();
   renderTrackPreview();
   renderQuizStep();
+  renderFeatured();
   updateOrderLinks();
   updateCartUI();
   document.title = t("brand_name");
@@ -263,6 +264,16 @@ function renderSeasonal() {
   const grid = document.getElementById("seasonalGrid");
   grid.innerHTML = "";
   PRODUCTS.filter((p) => p.cat === "seasonal").forEach((p) => grid.appendChild(makeProductCard(p)));
+}
+
+function renderFeatured() {
+  const grid = document.getElementById("featuredGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  const best = PRODUCTS.filter((p) => p.badge === "bestseller");
+  const rest = PRODUCTS.filter((p) => p.badge !== "bestseller" && p.cat !== "seasonal");
+  const featured = best.concat(rest).slice(0, 4);
+  featured.forEach((p) => grid.appendChild(makeProductCard(p)));
 }
 
 function setFilter(filter) {
