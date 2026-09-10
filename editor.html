@@ -43,6 +43,18 @@
   .help { font-size: 0.82rem; color: #666; margin-top: 6px; }
   .prodid { font-weight: 700; color: var(--green-dark); font-size: 0.85rem; }
   .badge-select { }
+  .photo-row { display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+  .thumb { width: 58px; height: 58px; border-radius: 8px; object-fit: cover; border: 1px solid var(--line); background: #f2f2f2; flex-shrink: 0; }
+  .thumb.empty { opacity: 0.35; }
+  .photo-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 99; align-items: center; justify-content: center; padding: 16px; }
+  .modal.open { display: flex; }
+  .modal-box { background: #fff; border-radius: 12px; padding: 18px; max-width: 440px; width: 100%; text-align: center; }
+  .modal-box h3 { margin-bottom: 12px; color: var(--green-dark); }
+  .modal-canvas { width: 100%; max-width: 350px; aspect-ratio: 1; background: #111; border-radius: 10px; display: block; margin: 0 auto 12px; }
+  .modal-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .modal-controls input[type=range] { flex: 1; min-width: 120px; }
+  .thumb-hint { font-size: 0.75rem; color: #888; }
 </style>
 </head>
 <body>
@@ -112,6 +124,24 @@
       </div>
       <div id="productList"></div>
     </div>
+  </div>
+</div>
+
+<div class="modal" id="peModal">
+  <div class="modal-box">
+    <h3>Product Photo</h3>
+    <canvas id="peCanvas" class="modal-canvas" width="360" height="360"></canvas>
+    <div class="modal-controls">
+      <button class="btn btn-gray" id="peRotL" title="Rotate left">⟲ Rotate</button>
+      <input type="range" id="peZoom" min="50" max="300" value="100" title="Zoom">
+      <button class="btn btn-gray" id="peRotR" title="Rotate right">Rotate ⟳</button>
+    </div>
+    <div class="modal-controls">
+      <button class="btn btn-gray" id="peReset">Reset</button>
+      <button class="btn btn-gray" id="peCancel">Cancel</button>
+      <button class="btn btn-green" id="peApply">Apply &amp; Save</button>
+    </div>
+    <div class="thumb-hint">Tip: product photos are shown as square thumbnails. Zoom to fill the frame nicely.</div>
   </div>
 </div>
 
@@ -187,10 +217,22 @@ function productCardHTML(p, idx) {
       </div>
       <button class="btn btn-gray add-variant" onclick="addVariant(this)">+ Add size</button>
     </div>
+    <div class="photo-row">
+      <img class="thumb ${productPhotos[idx] ? "" : "empty"}" data-role="thumb" src="${productPhotos[idx] || ""}" alt="">
+      <div class="photo-actions">
+        <input type="file" accept="image/*" data-role="file" hidden>
+        <button class="btn btn-gray" data-act="upload">📷 Add Photo</button>
+        <button class="btn btn-gray" data-act="edit" ${productPhotos[idx] ? "" : "disabled"}>✏️ Edit</button>
+        <button class="btn btn-red" data-act="remove" ${productPhotos[idx] ? "" : "disabled"}>✕ Remove</button>
+      </div>
+      <span class="thumb-hint">Photo is saved inside products.js (JPEG).</span>
+    </div>
   </div>`;
 }
 
 function renderProducts() {
+  productPhotos = {};
+  PRODUCTS.forEach((p, i) => { productPhotos[i] = p.photo || ""; });
   document.getElementById("productList").innerHTML = PRODUCTS.map(productCardHTML).join("");
   document.querySelectorAll("[data-role='pname']").forEach(() => {});
 }
@@ -258,6 +300,7 @@ function collectProducts() {
       price: v.querySelector("[data-vf='price']").value,
       mrp: v.querySelector("[data-vf='mrp']").value
     }));
+    p.photo = productPhotos[idx] || "";
   });
   return PRODUCTS;
 }
@@ -316,6 +359,101 @@ function saveAll() {
     status.style.color = "#c0392b";
   }
 }
+
+/* ---------------- Product photo editor ---------------- */
+var productPhotos = {};
+
+function refreshPhotoUI(card) {
+  const idx = +card.dataset.idx;
+  const has = !!productPhotos[idx];
+  const thumb = card.querySelector("[data-role='thumb']");
+  if (thumb) { thumb.src = productPhotos[idx] || ""; thumb.classList.toggle("empty", !has); }
+  const edit = card.querySelector("[data-act='edit']");
+  const remove = card.querySelector("[data-act='remove']");
+  if (edit) edit.disabled = !has;
+  if (remove) remove.disabled = !has;
+}
+
+var peState = { idx: -1, img: null, zoom: 1, rot: 0 };
+var peCanvas = document.getElementById("peCanvas");
+
+function peDraw() {
+  const c = peCanvas;
+  const g = c.getContext("2d");
+  const S = c.width;
+  g.clearRect(0, 0, S, S);
+  const img = peState.img;
+  if (!img) return;
+  const rad = peState.rot * Math.PI / 180;
+  const side = (peState.rot % 180 === 0);
+  const effW = side ? img.naturalWidth : img.naturalHeight;
+  const effH = side ? img.naturalHeight : img.naturalWidth;
+  const base = Math.max(S / effW, S / effH);
+  const dw = img.naturalWidth * base * peState.zoom;
+  const dh = img.naturalHeight * base * peState.zoom;
+  g.save();
+  g.translate(S / 2, S / 2);
+  g.rotate(rad);
+  g.drawImage(img, -dw / 2, -dh / 2, dw, dh);
+  g.restore();
+}
+
+function openPhotoEditor(idx, img) {
+  peState.idx = idx; peState.img = img; peState.zoom = 1; peState.rot = 0;
+  document.getElementById("peZoom").value = 100;
+  peDraw();
+  document.getElementById("peModal").classList.add("open");
+}
+
+function closePhotoEditor() { document.getElementById("peModal").classList.remove("open"); }
+
+document.getElementById("peRotL").addEventListener("click", () => { peState.rot = (peState.rot + 270) % 360; peDraw(); });
+document.getElementById("peRotR").addEventListener("click", () => { peState.rot = (peState.rot + 90) % 360; peDraw(); });
+document.getElementById("peZoom").addEventListener("input", (e) => { peState.zoom = e.target.value / 100; peDraw(); });
+document.getElementById("peReset").addEventListener("click", () => { peState.zoom = 1; peState.rot = 0; document.getElementById("peZoom").value = 100; peDraw(); });
+document.getElementById("peCancel").addEventListener("click", closePhotoEditor);
+document.getElementById("peApply").addEventListener("click", () => {
+  if (peState.idx < 0) return;
+  const dataUrl = peCanvas.toDataURL("image/jpeg", 0.9);
+  productPhotos[peState.idx] = dataUrl;
+  const card = document.querySelector(`#productList .card[data-idx="${peState.idx}"]`);
+  if (card) refreshPhotoUI(card);
+  closePhotoEditor();
+});
+
+document.getElementById("productList").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  const card = btn.closest(".card");
+  const idx = +card.dataset.idx;
+  const act = btn.dataset.act;
+  if (act === "upload") {
+    card.querySelector("[data-role='file']").click();
+  } else if (act === "edit") {
+    if (productPhotos[idx]) {
+      const img = new Image();
+      img.onload = () => openPhotoEditor(idx, img);
+      img.src = productPhotos[idx];
+    }
+  } else if (act === "remove") {
+    if (confirm("Remove this product photo?")) { productPhotos[idx] = ""; refreshPhotoUI(card); }
+  }
+});
+
+document.getElementById("productList").addEventListener("change", (e) => {
+  if (!e.target.matches("[data-role='file']")) return;
+  const card = e.target.closest(".card");
+  const idx = +card.dataset.idx;
+  const f = e.target.files && e.target.files[0];
+  e.target.value = "";
+  if (!f) return;
+  if (f.size > 8 * 1024 * 1024) { alert("Image too large — please pick one under 8 MB."); return; }
+  const url = URL.createObjectURL(f);
+  const img = new Image();
+  img.onload = () => { openPhotoEditor(idx, img); URL.revokeObjectURL(url); };
+  img.onerror = () => { alert("Could not read that image."); URL.revokeObjectURL(url); };
+  img.src = url;
+});
 
 document.addEventListener("input", (e) => {
   if (e.target.matches("[data-f='name_en']")) {

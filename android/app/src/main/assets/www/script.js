@@ -173,7 +173,9 @@ function makeProductCard(p) {
   card.innerHTML =
     badge +
     (p.cat === "seasonal" ? '<span class="seasonal-tag">' + t("seasonal_tag") + "</span>" : "") +
-    '<div class="product-emoji"><img class="mark-img" src="brand.svg" alt=""></div>' +
+    '<div class="product-emoji">' + (p.photo
+      ? '<img class="product-photo" src="' + p.photo + '" alt="' + productName(p) + '" loading="lazy">'
+      : '<img class="mark-img" src="brand.svg" alt="">') + '</div>' +
     '<div class="product-body">' +
       '<h3 class="product-name"></h3>' +
       '<div class="product-rating">' + starsHTML(p.rating) + '</div>' +
