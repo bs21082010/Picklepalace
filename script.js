@@ -135,11 +135,24 @@ function makeProductCard(p) {
   });
   featuresHTML += '</div>';
 
-  var inHTML = '<span class="ing-in">🥭 ' + t("ingredient_mango") + '</span>' +
-               '<span class="ing-in">🌶️ ' + t("ingredient_chilli") + '</span>' +
-               '<span class="ing-in">🧂 ' + t("ingredient_salt") + '</span>' +
-               '<span class="ing-in">🌿 ' + t("ingredient_spices") + '</span>' +
-               '<span class="ing-in">🛢️ ' + t("ingredient_oil") + '</span>';
+  var ING_EMOJI = {
+    ingredient_mango: "🥭",
+    ingredient_lemon: "🍋",
+    ingredient_green_chilli: "🌶️",
+    ingredient_chilli: "🌶️",
+    ingredient_garlic: "🧄",
+    ingredient_amla: "🟢",
+    ingredient_salt: "🧂",
+    ingredient_spices: "🌿",
+    ingredient_oil: "🛢️",
+    ingredient_jaggery: "🍯",
+    ingredient_mix: "🫙"
+  };
+
+  var ingList = p.ing && p.ing.length ? p.ing : ["ingredient_mango", "ingredient_chilli", "ingredient_salt", "ingredient_spices", "ingredient_oil"];
+  var inHTML = ingList.map(function (k) {
+    return '<span class="ing-in">' + (ING_EMOJI[k] || "🌱") + ' ' + t(k) + '</span>';
+  }).join("");
   var notHTML = '<span class="ing-not">❌ ' + t("ingredient_no_preservatives") + '</span>' +
                 '<span class="ing-not">❌ ' + t("ingredient_no_flavours") + '</span>' +
                 '<span class="ing-not">❌ ' + t("ingredient_no_additives") + '</span>';

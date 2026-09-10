@@ -17,6 +17,7 @@ const PRODUCTS = [
     cat: "mango",
     emoji: "🥭",
     badge: "bestseller",
+    ing: ["ingredient_mango", "ingredient_chilli", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.8,
     reviews: 214,
     variants: [
@@ -45,6 +46,7 @@ const PRODUCTS = [
     cat: "spicy",
     emoji: "🍋",
     badge: "",
+    ing: ["ingredient_lemon", "ingredient_salt", "ingredient_spices", "ingredient_oil"],
     rating: 4.7,
     reviews: 156,
     variants: [
@@ -73,6 +75,7 @@ const PRODUCTS = [
     cat: "spicy",
     emoji: "🌶️",
     badge: "new",
+    ing: ["ingredient_green_chilli", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.9,
     reviews: 98,
     variants: [
@@ -101,6 +104,7 @@ const PRODUCTS = [
     cat: "mixed",
     emoji: "🫙",
     badge: "bestseller",
+    ing: ["ingredient_mango", "ingredient_lemon", "ingredient_green_chilli", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.8,
     reviews: 341,
     variants: [
@@ -129,6 +133,7 @@ const PRODUCTS = [
     cat: "spicy",
     emoji: "🧄",
     badge: "",
+    ing: ["ingredient_garlic", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.6,
     reviews: 87,
     variants: [
@@ -156,6 +161,7 @@ const PRODUCTS = [
     cat: "sweet",
     emoji: "🟢",
     badge: "",
+    ing: ["ingredient_amla", "ingredient_jaggery", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.7,
     reviews: 129,
     variants: [
@@ -184,6 +190,7 @@ const PRODUCTS = [
     cat: "combo",
     emoji: "🎁",
     badge: "bestseller",
+    ing: ["ingredient_mango", "ingredient_lemon", "ingredient_green_chilli", "ingredient_amla", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.9,
     reviews: 176,
     variants: [
@@ -211,6 +218,7 @@ const PRODUCTS = [
     cat: "combo",
     emoji: "🧺",
     badge: "offer",
+    ing: ["ingredient_mango", "ingredient_lemon", "ingredient_green_chilli", "ingredient_amla", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.8,
     reviews: 203,
     variants: [
@@ -238,6 +246,7 @@ const PRODUCTS = [
     cat: "seasonal",
     emoji: "🥭",
     badge: "",
+    ing: ["ingredient_mango", "ingredient_chilli", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.9,
     reviews: 64,
     variants: [
@@ -265,6 +274,7 @@ const PRODUCTS = [
     cat: "seasonal",
     emoji: "🟢",
     badge: "",
+    ing: ["ingredient_amla", "ingredient_jaggery", "ingredient_salt", "ingredient_oil", "ingredient_spices"],
     rating: 4.7,
     reviews: 41,
     variants: [
@@ -291,6 +301,7 @@ const PRODUCTS = [
     cat: "seasonal",
     emoji: "🍋",
     badge: "",
+    ing: ["ingredient_lemon", "ingredient_salt", "ingredient_spices", "ingredient_oil"],
     rating: 4.8,
     reviews: 52,
     variants: [
